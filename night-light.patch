@@ -1,0 +1,14 @@
+diff --git a/src/backends/x11/meta-monitor-manager-xrandr.c b/src/backends/x11/meta-monitor-manager-xrandr.c
+index 489a9b4241..e513ca5305 100644
+--- a/src/backends/x11/meta-monitor-manager-xrandr.c
++++ b/src/backends/x11/meta-monitor-manager-xrandr.c
+@@ -1006,7 +1006,7 @@ static void
+ meta_monitor_manager_xrandr_set_output_ctm (MetaOutput          *output,
+                                             const MetaOutputCtm *ctm)
+ {
+-  meta_output_xrandr_set_ctm (META_OUTPUT_XRANDR (output), ctm);
++  //meta_output_xrandr_set_ctm (META_OUTPUT_XRANDR (output), ctm);
+ }
+ 
+ static void
+
