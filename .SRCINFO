@@ -1,6 +1,6 @@
 pkgbase = mutter-git
 	pkgdesc = A window manager for GNOME.
-	pkgver = 40.0+2+g9e36ff2dd
+	pkgver = 40.0
 	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
@@ -14,7 +14,7 @@ pkgbase = mutter-git
 	makedepends = sysprof
 	depends = dconf
 	depends = gobject-introspection-runtime
-	depends = gsettings-desktop-schemas-git
+	depends = gsettings-desktop-schemas
 	depends = libcanberra
 	depends = startup-notification
 	depends = zenity
@@ -30,7 +30,9 @@ pkgbase = mutter-git
 	depends = graphene
 	provides = mutter
 	conflicts = mutter
-	source = git+https://gitlab.gnome.org/GNOME/mutter.git
+	source = git+https://gitlab.gnome.org/GNOME/mutter.git#commit=21a09fb7928c17519d67ffd8c1ae80071f92fdbf
+	source = night-light.patch
+	sha256sums = SKIP
 	sha256sums = SKIP
 
 pkgname = mutter-git
