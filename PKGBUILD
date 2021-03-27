@@ -13,7 +13,7 @@ depends=(dconf gobject-introspection-runtime gsettings-desktop-schemas
          libxkbcommon-x11 gnome-settings-daemon libgudev libinput pipewire
          xorg-xwayland graphene)
 makedepends=(gobject-introspection git egl-wayland meson xorg-server sysprof)
-provides=(mutter)
+provides=(libmutter-8.so)
 conflicts=(mutter)
 groups=(gnome)
 _commit=21a09fb7928c17519d67ffd8c1ae80071f92fdbf
