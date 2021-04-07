@@ -1,6 +1,6 @@
 # Maintainer: solopasha at daron439 dot com
 
-pkgname=mutter-git
+pkgname=mutter-nvidia-arch
 _pkgname=mutter
 pkgver=40.0
 pkgrel=1
