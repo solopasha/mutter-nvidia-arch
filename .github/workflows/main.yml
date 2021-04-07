@@ -1,5 +1,12 @@
-- name: Arch Linux PKGBUILD builder action
-  uses: 2m/arch-pkgbuild-builder@v1.16
-  with:
-    target: 'pkgbuild'
-    pkgname: 'ucm-bin'
+on: push
+
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Arch Linux PKGBUILD builder action
+        uses: 2m/arch-pkgbuild-builder@v1.16
+        with:
+          target: 'pkgbuild'
+          pkgname: 'mutter-git'
