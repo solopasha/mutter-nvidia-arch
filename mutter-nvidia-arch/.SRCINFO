@@ -1,4 +1,4 @@
-pkgbase = mutter-git
+pkgbase = mutter-nvidia-arch
 	pkgdesc = A window manager for GNOME.
 	pkgver = 40.0
 	pkgrel = 1
@@ -28,6 +28,8 @@ pkgbase = mutter-git
 	depends = pipewire
 	depends = xorg-xwayland
 	depends = graphene
+	depends = libxkbfile
+	provides = libmutter-8.so
 	provides = mutter
 	conflicts = mutter
 	source = git+https://gitlab.gnome.org/GNOME/mutter.git#commit=21a09fb7928c17519d67ffd8c1ae80071f92fdbf
@@ -35,5 +37,5 @@ pkgbase = mutter-git
 	sha256sums = SKIP
 	sha256sums = SKIP
 
-pkgname = mutter-git
+pkgname = mutter-nvidia-arch
 
