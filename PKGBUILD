@@ -3,7 +3,7 @@
 pkgname=mutter-nvidia-arch
 _pkgname=mutter
 pkgver=40.0
-pkgrel=1
+pkgrel=4
 pkgdesc="A window manager for GNOME."
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)

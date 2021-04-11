@@ -1,7 +1,7 @@
 pkgbase = mutter-nvidia-arch
 	pkgdesc = A window manager for GNOME.
 	pkgver = 40.0
-	pkgrel = 1
+	pkgrel = 4
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
 	groups = gnome
