@@ -3,6 +3,7 @@ pkgbase = mutter-nvidia-arch
 	pkgver = 40.0
 	pkgrel = 4
 	url = https://gitlab.gnome.org/GNOME/mutter
+	install = mutter.install
 	arch = x86_64
 	groups = gnome
 	license = GPL

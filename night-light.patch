@@ -1,5 +1,5 @@
 diff --git a/src/backends/x11/meta-output-xrandr.c b/src/backends/x11/meta-output-xrandr.c
-index 6cf82f2ecf33b6a41e564837571e5375fd1d77d8..c785b3370450c13f51db93d35a4d736424fb5141 100644
+index 6cf82f2ecf33b6a41e564837571e5375fd1d77d8..7265624f42eeef0002b061892a64ac7fdf3317c9 100644
 --- a/src/backends/x11/meta-output-xrandr.c
 +++ b/src/backends/x11/meta-output-xrandr.c
 @@ -50,6 +50,9 @@
@@ -12,18 +12,21 @@ index 6cf82f2ecf33b6a41e564837571e5375fd1d77d8..c785b3370450c13f51db93d35a4d7364
  };
  
  G_DEFINE_TYPE (MetaOutputXrandr, meta_output_xrandr, META_TYPE_OUTPUT)
-@@ -198,19 +201,37 @@ meta_output_xrandr_change_backlight (MetaOutputXrandr *output_xrandr,
+@@ -198,19 +201,41 @@ meta_output_xrandr_change_backlight (MetaOutputXrandr *output_xrandr,
    meta_output_set_backlight (output, normalize_backlight (output, hw_value));
  }
  
 +static gboolean
-+ctm_is_equal (const MetaOutputCtm *ctm1, const MetaOutputCtm *ctm2)
++ctm_is_equal (const MetaOutputCtm *ctm1,
++              const MetaOutputCtm *ctm2)
 +{
 +  int i;
 +
 +  for (i = 0; i < 9; i++)
-+    if (ctm1->matrix[i] != ctm2->matrix[i])
-+      return FALSE;
++    {
++      if (ctm1->matrix[i] != ctm2->matrix[i])
++        return FALSE;
++    }
 +
 +  return TRUE;
 +}
@@ -35,11 +38,12 @@ index 6cf82f2ecf33b6a41e564837571e5375fd1d77d8..c785b3370450c13f51db93d35a4d7364
 -  MetaOutput *output = META_OUTPUT (output_xrandr);
 -  Display *xdisplay = xdisplay_from_output (output);
 -  Atom atom = XInternAtom (xdisplay, "CTM", False);
-+  if (!output_xrandr->ctm_initialized || !ctm_is_equal (ctm, &output_xrandr->ctm))
++  if (!output_xrandr->ctm_initialized ||
++      !ctm_is_equal (ctm, &output_xrandr->ctm))
 +    {
 +      MetaOutput *output = META_OUTPUT (output_xrandr);
 +      Display *xdisplay = xdisplay_from_output (output);
-+      Atom atom = XInternAtom (xdisplay, "CTM", False);
++      Atom ctm_atom = XInternAtom (xdisplay, "CTM", False);
  
 -  xcb_randr_change_output_property (XGetXCBConnection (xdisplay),
 -                                    (XID) meta_output_get_id (output),
@@ -48,7 +52,7 @@ index 6cf82f2ecf33b6a41e564837571e5375fd1d77d8..c785b3370450c13f51db93d35a4d7364
 -                                    18, &ctm->matrix);
 +      xcb_randr_change_output_property (XGetXCBConnection (xdisplay),
 +                                        (XID) meta_output_get_id (output),
-+                                        atom, XCB_ATOM_INTEGER, 32,
++                                        ctm_atom, XCB_ATOM_INTEGER, 32,
 +                                        XCB_PROP_MODE_REPLACE,
 +                                        18, &ctm->matrix);
 +

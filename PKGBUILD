@@ -16,6 +16,7 @@ makedepends=(gobject-introspection git egl-wayland meson xorg-server sysprof)
 provides=(libmutter-8.so mutter)
 conflicts=(mutter)
 groups=(gnome)
+install=mutter.install
 _commit=21a09fb7928c17519d67ffd8c1ae80071f92fdbf
 source=("git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
         "night-light.patch")
@@ -32,6 +33,8 @@ prepare(){
   patch -Np1 -i ../night-light.patch
 }
 build() {
+  CFLAGS="${CFLAGS/-O2/-O3} -fno-semantic-interposition"
+  LDFLAGS+=" -Wl,-Bsymbolic-functions"
   arch-meson $_pkgname build \
     -D egl_device=true \
     -D wayland_eglstream=true \
