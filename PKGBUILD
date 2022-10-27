@@ -21,13 +21,15 @@ checkdepends=(xorg-server-xvfb wireplumber python-dbusmock zenity)
 options=(debug)
 _commit=bdf3470a8a89206a39dc45824a8080dc6a9666ca  # tags/43.0^0
 source=("git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
-        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch"
         "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2623.patch"
-        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2652.patch")
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2624.patch"
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2652.patch"
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch")
 sha256sums=('SKIP'
-            'f534708708ac8ce4adf021d50c70ab5f256f3d78df53194ccda9cecdee44e80b'
             '346b79437bc0ff5db03306faaba7c7ae91920b7fd3dc47d4bd92197a1fbb59da'
-            '57ef285755b4dc9d95c4f43f6130fd18baee6abcf540171a0892985e907aeb10')
+            '8d9a892c6f4bea6877b3f2af047498f175d524cc86ca38112e6b320a49b61002'
+            '57ef285755b4dc9d95c4f43f6130fd18baee6abcf540171a0892985e907aeb10'
+            'f534708708ac8ce4adf021d50c70ab5f256f3d78df53194ccda9cecdee44e80b')
 
 pkgver() {
   cd mutter
