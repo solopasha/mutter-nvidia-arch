@@ -41,7 +41,7 @@ jobs:
           echo 'builduser ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/build && \
           dbus-uuidgen --ensure=/etc/machine-id && \
           chown -R builduser:builduser ./ && \
-          testing-x86_64-build; \
+          sudo -iu builduser testing-x86_64-build; \
           find -type f -name "*.log" -print0 | tar -cvzf /out/logs.tar.gz --null -T - && \
           find -type f -name "*.pkg*" -exec cp "{}" /out \;
 
