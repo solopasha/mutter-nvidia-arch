@@ -25,7 +25,7 @@ source=("git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
         "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2623.patch"
         "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2652.patch")
 sha256sums=('SKIP'
-            '3e76b053ae0525cc26d2c611ff6133ee7753f13c7a5397e4cab651670eae563d'
+            'f534708708ac8ce4adf021d50c70ab5f256f3d78df53194ccda9cecdee44e80b'
             '346b79437bc0ff5db03306faaba7c7ae91920b7fd3dc47d4bd92197a1fbb59da'
             '57ef285755b4dc9d95c4f43f6130fd18baee6abcf540171a0892985e907aeb10')
 
