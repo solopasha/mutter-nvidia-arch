@@ -1,0 +1,62 @@
+name: Create release
+
+on:
+  push:
+
+jobs:
+  kotatogram-desktop:
+    runs-on: ubuntu-latest
+    container:
+      image: "archlinux:base-devel"
+      options: --privileged
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup
+    name: Build and publish packages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Get Hash
+        id: hash
+        run: |
+          pacman -Sy --noconfirm git && \
+          git config --global --add safe.directory '*' && \
+          echo "git_hash=$(git rev-parse --short "$GITHUB_SHA")" >> $GITHUB_ENV
+      - name: Check Hash
+        run: echo "${{ env.git_hash }}"
+      - name: Build
+        id: build
+        run: |
+          set +e ; \
+          mkdir /out && \
+          pacman -Syu --noconfirm && \
+          pacman -S --noconfirm reflector && \
+          reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist && \
+          pacman -S --noconfirm git sudo devtools && \
+          sed \
+              -e '/MAKEFLAGS=/s/^#//g' \
+              -e '/MAKEFLAGS/s/-j2/-j$(($(nproc)+1))/g' \
+              -e '/^OPTIONS/s/!lto/lto/g' \
+              -i /etc/makepkg.conf && \
+          useradd -m builduser && \
+          echo 'builduser ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/build && \
+          dbus-uuidgen --ensure=/etc/machine-id && \
+          chown -R builduser:builduser ./ && \
+          testing-x86_64-build; \
+          find -type f -name "*.log" -print0 | tar -cvzf /out/logs.tar.gz --null -T - && \
+          find -type f -name "*.pkg*" -exec cp "{}" /out \;
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        if: success() || failure()
+        with:
+          name: build-${{ env.git_hash }}
+          path: /out/*
+
+      - name: Create release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          prerelease: false
+          files: /out/*
+          title: packages-${{ env.git_hash }}
+          automatic_release_tag: build-${{ env.git_hash }}

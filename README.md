@@ -1,5 +1,5 @@
 # mutter-nvidia-arch
-Fix night light stuttering on GNOME 40 with proprietary NVIDIA
+Some patches to make gnome experience smoother
 
 
 ```
