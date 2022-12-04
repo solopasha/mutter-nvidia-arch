@@ -1,11 +1,10 @@
 pkgbase = mutter
 	pkgdesc = A window manager for GNOME
-	pkgver = 43.0
-	pkgrel = 1.1
+	pkgver = 43.1+r24+g030e9b8b2
+	pkgrel = 1
 	url = https://gitlab.gnome.org/GNOME/mutter
 	arch = x86_64
 	license = GPL
-	checkdepends = xorg-server-xvfb
 	checkdepends = wireplumber
 	checkdepends = python-dbusmock
 	checkdepends = zenity
@@ -17,6 +16,7 @@ pkgbase = mutter
 	makedepends = wayland-protocols
 	makedepends = sysprof
 	makedepends = gi-docgen
+	makedepends = xorg-server-xvfb
 	depends = dconf
 	depends = gobject-introspection-runtime
 	depends = gsettings-desktop-schemas
@@ -35,17 +35,16 @@ pkgbase = mutter
 	depends = libsysprof-capture
 	depends = lcms2
 	depends = colord
-	options = debug
-	source = git+https://gitlab.gnome.org/GNOME/mutter.git#commit=bdf3470a8a89206a39dc45824a8080dc6a9666ca
-	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2623.patch
-	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2624.patch
-	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2652.patch
+	source = git+https://gitlab.gnome.org/GNOME/mutter.git#commit=030e9b8b24cb4335455f4e51a39a2c854c5717b8
 	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch
+	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1880.patch
+	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2671.patch
+	source = https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2702.patch
 	sha256sums = SKIP
-	sha256sums = 346b79437bc0ff5db03306faaba7c7ae91920b7fd3dc47d4bd92197a1fbb59da
-	sha256sums = 8d9a892c6f4bea6877b3f2af047498f175d524cc86ca38112e6b320a49b61002
-	sha256sums = 57ef285755b4dc9d95c4f43f6130fd18baee6abcf540171a0892985e907aeb10
 	sha256sums = f534708708ac8ce4adf021d50c70ab5f256f3d78df53194ccda9cecdee44e80b
+	sha256sums = 65981409a5fc5ebfa95c7178f588cb2564f405cf55cbc7a315ecd4ac6c892b1c
+	sha256sums = eb9e2952046cce99a1a3d8010aa3175b011cafb37f0258ebe91f0a67bbf31729
+	sha256sums = 452f3b66a5853eda67c72cb1d6e00c256ddd159cf1e906e0374a5ec4e9861fe6
 
 pkgname = mutter
 	groups = gnome

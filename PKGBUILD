@@ -5,8 +5,8 @@
 
 pkgbase=mutter
 pkgname=(mutter mutter-docs)
-pkgver=43.0
-pkgrel=1.1
+pkgver=43.1+r24+g030e9b8b2
+pkgrel=1
 pkgdesc="A window manager for GNOME"
 url="https://gitlab.gnome.org/GNOME/mutter"
 arch=(x86_64)
@@ -16,20 +16,19 @@ depends=(dconf gobject-introspection-runtime gsettings-desktop-schemas
          gnome-settings-daemon libgudev libinput pipewire xorg-xwayland graphene
          libxkbfile libsysprof-capture lcms2 colord)
 makedepends=(gobject-introspection git egl-wayland meson xorg-server
-             wayland-protocols sysprof gi-docgen)
-checkdepends=(xorg-server-xvfb wireplumber python-dbusmock zenity)
-options=(debug)
-_commit=bdf3470a8a89206a39dc45824a8080dc6a9666ca  # tags/43.0^0
+             wayland-protocols sysprof gi-docgen xorg-server-xvfb)
+checkdepends=(wireplumber python-dbusmock zenity)
+_commit=030e9b8b24cb4335455f4e51a39a2c854c5717b8
 source=("git+https://gitlab.gnome.org/GNOME/mutter.git#commit=$_commit"
-        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2623.patch"
-        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2624.patch"
-        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2652.patch"
-        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch")
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1441.patch"
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/1880.patch"
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2671.patch"
+        "https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/2702.patch")
 sha256sums=('SKIP'
-            '346b79437bc0ff5db03306faaba7c7ae91920b7fd3dc47d4bd92197a1fbb59da'
-            '8d9a892c6f4bea6877b3f2af047498f175d524cc86ca38112e6b320a49b61002'
-            '57ef285755b4dc9d95c4f43f6130fd18baee6abcf540171a0892985e907aeb10'
-            'f534708708ac8ce4adf021d50c70ab5f256f3d78df53194ccda9cecdee44e80b')
+            'f534708708ac8ce4adf021d50c70ab5f256f3d78df53194ccda9cecdee44e80b'
+            '65981409a5fc5ebfa95c7178f588cb2564f405cf55cbc7a315ecd4ac6c892b1c'
+            'eb9e2952046cce99a1a3d8010aa3175b011cafb37f0258ebe91f0a67bbf31729'
+            '452f3b66a5853eda67c72cb1d6e00c256ddd159cf1e906e0374a5ec4e9861fe6')
 
 pkgver() {
   cd mutter
@@ -46,7 +45,7 @@ prepare() {
     echo "Applying patch $src..."
     patch -Np1 < "../$src"
   done
-  git revert -n a81d4aed7aa681672e181b6f6999057d1700df62 # fix stuttering when changing layout
+  #git revert -n a81d4aed7aa681672e181b6f6999057d1700df62 # fix stuttering when changing layout
 }
 
 build() {
